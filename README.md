@@ -93,7 +93,7 @@ However far you and your partner get, the application should have, at a minimum,
 
 ### Optional: Wireframes Requirement
 
-We have provided some wireframes below; they are optional to use for executing layout. However, they should provide guidance for what views and information we instructors are expecting to see and interact with as we grade.  We also have an [instructor reference version](https://ada-rideshare-demo.herokuapp.com/) of the application running.  You can use this for reference or ideas.
+We have provided some wireframes below; they are optional to use for executing layout. However, they should provide guidance for what views and information we instructors are expecting to see and interact with as we grade.
 
 ### Seeding the Database
 
