@@ -1,0 +1,11 @@
+<h1> Passenger Index </h1>
+
+<ul>
+  <% @passengers.each do |passenger| %>
+    <li>
+    <%= passenger.id %>.  
+    <%= passenger.name %> | 
+    <%= passenger.phone_num %>
+    </li>
+  <% end %>
+</ul>
