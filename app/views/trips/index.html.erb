@@ -1,0 +1,14 @@
+<h1> Trip Index </h1>
+
+<ul>
+  <% @trips.each do |trip| %>
+    <li>
+    <%= trip.id %>.  
+    Date: <%= trip.date %> | 
+    Rating: <%= trip.rating %> | 
+    Cost: <%= trip.cost %> | 
+    Passenger: <%= trip.passenger_id %> | 
+    Driver: <%= trip.driver_id %> | 
+    </li>
+  <% end %>
+</ul>
