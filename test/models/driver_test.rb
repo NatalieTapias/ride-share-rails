@@ -1,4 +1,4 @@
-require "../test_helper"
+require "test_helper"
 
 describe Driver do
   let (:new_driver) {
