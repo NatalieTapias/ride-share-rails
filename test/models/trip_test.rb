@@ -1,4 +1,4 @@
-require "../test_helper"
+require "test_helper"
 
 describe Trip do
   let (:new_driver) {
@@ -30,6 +30,8 @@ describe Trip do
 
   it "will have the required fields" do
     # Arrange
+    new_driver.save
+    new_passenger.save
     new_trip.save
     trip = Trip.first
     [:date, :passenger_id, :driver_id, :cost, :rating].each do |field|
@@ -42,14 +44,24 @@ describe Trip do
   describe "relationships" do
     it "can have one passenger" do
       # Arrange
+      new_driver.save
+      new_passenger.save
       new_trip.save
       trip = Trip.first
 
       # Assert
-      expect(trip.passengers.count).must_be :>, 0
-      trip.passengers.each do |trip|
-        expect(passengers).must_be_instance_of Passenger
-      end
+      expect(trip.passenger).must_be_instance_of Passenger
+    end
+
+    it "can have one driver" do
+      # Arrange
+      new_driver.save
+      new_passenger.save
+      new_trip.save
+      trip = Trip.first
+
+      # Assert
+      expect(trip.driver).must_be_instance_of Driver
     end
   end
 
