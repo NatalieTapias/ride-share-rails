@@ -52,6 +52,17 @@ describe Trip do
       # Assert
       expect(trip.passenger).must_be_instance_of Passenger
     end
+
+    it "can have one driver" do
+      # Arrange
+      new_driver.save
+      new_passenger.save
+      new_trip.save
+      trip = Trip.first
+
+      # Assert
+      expect(trip.driver).must_be_instance_of Driver
+    end
   end
 
   describe "validations" do
