@@ -3,5 +3,20 @@
 <ul>
   <li> ID: <%= @driver.id %> </li>
   <li> Name: <%= @driver.name %> </li>
-  <li> VIN: <%= @driver.vin %> </li>
+  <li> vin: <%= @driver.vin %> </li>
+  <%= link_to "Edit", edit_driver_path(@driver) %>
+  <%= link_to "Delete", driver_path(@driver), method: :delete, data: { confirm: "Are you sure you want to delete #{@driver.name}?"} %>
 </ul>
+
+<section>
+  Trips: 
+  <% @driver.trips.each do |trip| %>
+    <li> ID: <%= link_to "#{trip.id}", trip_path(trip) %> </li>
+    <li> Date: <%= trip.date %> </li>
+    <li> Passenger: <%= trip.passenger.name %> - ID: <%= trip.passenger.id %> </li>
+    <li> Cost: <%= trip.cost %> </li>
+    <li> Rating: <%= trip.rating %> </li>
+  <% end %>
+</section>
+
+<%= link_to "Back to drivers list", drivers_path %>

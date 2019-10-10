@@ -4,6 +4,6 @@
   <li> Date: <%= @trip.date %> </li>
   <li> Rating: <%= @trip.rating %> </li>
   <li> Cost: <%= @trip.cost %> </li>
-  <li> Passenger: <%= @trip.passenger %> </li>
-  <li> Driver: <%= @trip.driver%> </li>
+  <li> Passenger: <%= @trip.passenger.name %> - ID: <%= @trip.passenger.id %></li>
+  <li> Driver: <%= @trip.driver.name %> - ID: <%= @trip.driver.id %> </li>
 </ul>
