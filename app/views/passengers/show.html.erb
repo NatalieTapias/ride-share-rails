@@ -4,4 +4,24 @@
   <li> ID: <%= @passenger.id %> </li>
   <li> Name: <%= @passenger.name %> </li>
   <li> Phone Number: <%= @passenger.phone_num %> </li>
+  # here's where I'd add the sum of all trips costs from the model
+  <%# <li> Total Amount Charged: <%= @passenger.trips.cost.sum%> 
+  # here's where I want to see all of the trips the passenger went on
 </ul>
+
+
+<section>
+ Trips:
+ <hr/>
+<%  trip_array = Trip.where(passenger_id: @passenger.id).to_a %>
+<% trip_array.each do |element| %>
+<ul>
+<li>Trip ID: <%= element.id %></li>
+<li>Trip Cost: $<%= (element.cost.to_f) / 100 %></li>
+<li>Rating: <%= element.rating %></li>
+<li>Driver Name: <%= element.driver.name %></li>
+</ul>
+<% end %>
+
+
+</section>
