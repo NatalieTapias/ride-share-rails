@@ -1,12 +1,15 @@
 <h2> Passenger Information </h2>
 
 <ul>
-  <li> ID: <%= @passenger.id %> </li>
-  <li> Name: <%= @passenger.name %> </li>
-  <li> Phone Number: <%= @passenger.phone_num %> </li>
-  # here's where I'd add the sum of all trips costs from the model
-  <%# <li> Total Amount Charged: <%= @passenger.trips.cost.sum%> 
-  # here's where I want to see all of the trips the passenger went on
+  <li>ID: <%= @passenger.id %> </li>
+  <li>Name: <%= @passenger.name %> </li>
+  <li>Phone Number: <%= @passenger.phone_num %> </li>
+  <li>Total Costs: (PUT SUM HERE) </li>
+
+  <li><%= link_to "Edit Passenger Info", edit_passenger_path(@passenger) %></li>
+  <%= link_to "Delete passenger", passenger_path(@passenger), method: :delete, data: { confirm: "Are you sure you want to delete #{@passenger.name}?"} %>
+  
+
 </ul>
 
 
@@ -14,12 +17,14 @@
  Trips:
  <hr/>
 <%  trip_array = Trip.where(passenger_id: @passenger.id).to_a %>
-<% trip_array.each do |element| %>
+<% trip_array.each do |trip| %>
 <ul>
-<li>Trip ID: <%= element.id %></li>
-<li>Trip Cost: $<%= (element.cost.to_f) / 100 %></li>
-<li>Rating: <%= element.rating %></li>
-<li>Driver Name: <%= element.driver.name %></li>
+
+ 
+<li>Trip ID: <%= link_to trip.id, trip_path(trip) %> </li>
+<li>Trip Cost: $<%= (trip.cost.to_f) / 100 %></li>
+<li>Rating: <%= trip.rating %></li>
+<li>Driver Name: <%= trip.driver.name %></li>
 </ul>
 <% end %>
 
