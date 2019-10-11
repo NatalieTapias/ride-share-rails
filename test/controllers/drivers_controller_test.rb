@@ -149,22 +149,19 @@ describe DriversController do
       }.must_change "Driver.count", 1
       must_respond_with :redirect
       must_redirect_to driver_path(new_driver)
-      
-      
     end
     
-    #   it "does not change the db when the driver does not exist, then responds with " do
-    #     # Arrange
-    #     # Ensure there is an invalid id that points to no driver
-    
-    #     # Act-Assert
-    #     # Ensure that there is no change in Driver.count
-    
-    #     # Assert
-    #     # Check that the controller responds or redirects with whatever your group decides
-    
-    #   end
-    # end
+    it "does not change the db when the driver does not exist, then responds with " do
+      # Arrange
+      # Ensure there is an invalid id that points to no driver
+      
+      # Act-Assert
+      # Ensure that there is no change in Driver.count
+      
+      # Assert
+      # Check that the controller responds or redirects with whatever your group decides
+      
+    end
   end
 end
 
