@@ -117,61 +117,47 @@ describe DriversController do
       
       must_respond_with :redirect
     end
-    
-    #   it "does not update any driver if given an invalid id, and responds with a 404" do
-    #     # Arrange
-    #     # Ensure there is an invalid id that points to no driver
-    #     # Set up the form data
-    
-    #     # Act-Assert
-    #     # Ensure that there is no change in Driver.count
-    
-    #     # Assert
-    #     # Check that the controller gave back a 404
-    
-    #   end
-    
-    #   it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-    #     # Note: This will not pass until ActiveRecord Validations lesson
-    #     # Arrange
-    #     # Ensure there is an existing driver saved
-    #     # Assign the existing driver's id to a local variable
-    #     # Set up the form data so that it violates Driver validations
-    
-    #     # Act-Assert
-    #     # Ensure that there is no change in Driver.count
-    
-    #     # Assert
-    #     # Check that the controller redirects
-    
-    #   end
-    # end
-    
-    # describe "destroy" do
-    #   it "destroys the driver instance in db when driver exists, then redirects" do
-    #     # Arrange
-    #     # Ensure there is an existing driver saved
-    
-    #     # Act-Assert
-    #     # Ensure that there is a change of -1 in Driver.count
-    
-    #     # Assert
-    #     # Check that the controller redirects
-    
-    #   end
-    
-    #   it "does not change the db when the driver does not exist, then responds with " do
-    #     # Arrange
-    #     # Ensure there is an invalid id that points to no driver
-    
-    #     # Act-Assert
-    #     # Ensure that there is no change in Driver.count
-    
-    #     # Assert
-    #     # Check that the controller responds or redirects with whatever your group decides
-    
-    #   end
-    # end
-    
+
+    it "does not update any driver if given an invalid id, and responds with a 404" do
+      updated_driver_form_data = {
+        driver: {
+          name: "Spammy Spam",
+          vin: "000000"
+        }
+      }
+
+      expect {
+        patch driver_path(-1), params: updated_driver_form_data
+      }.wont_change 'Driver.count'
+
+      must_respond_with :missing
+    end
   end
-  
+
+  # describe "destroy" do
+  #   it "destroys the driver instance in db when driver exists, then redirects" do
+  #     # Arrange
+  #     # Ensure there is an existing driver saved
+
+  #     # Act-Assert
+  #     # Ensure that there is a change of -1 in Driver.count
+
+  #     # Assert
+  #     # Check that the controller redirects
+
+  #   end
+
+  #   it "does not change the db when the driver does not exist, then responds with " do
+  #     # Arrange
+  #     # Ensure there is an invalid id that points to no driver
+
+  #     # Act-Assert
+  #     # Ensure that there is no change in Driver.count
+
+  #     # Assert
+  #     # Check that the controller responds or redirects with whatever your group decides
+
+  #   end
+  # end
+end
+
