@@ -4,9 +4,12 @@ Rails.application.routes.draw do
   
   resources :homepages, only: [:index]
   
+  patch '/drivers/:id/status/online', to: 'drivers#mark_online', as: 'mark_online'
+  patch '/drivers/:id/status/offline', to: 'drivers#mark_offline', as: 'mark_offline'
+  
   resources :drivers
-  patch '/drivers/:id/status', to: 'drivers#mark_online', as: 'mark_online'
-  patch '/drivers/:id/status', to: 'drivers#mark_offline', as: 'mark_offline'
+  # patch '/drivers/:id/status', to: 'drivers#mark_online', as: 'mark_online'
+  # patch '/drivers/:id/status', to: 'drivers#mark_offline', as: 'mark_offline'
   
   resources :passengers do
     resources :trips, only: [:create]

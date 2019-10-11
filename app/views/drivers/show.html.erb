@@ -22,9 +22,9 @@
 
 <p> 
   <% if @driver.active == false %>
-    <%= link_to "mark_offline", mark_online_path(@driver), method: :patch %>
+    <%= link_to "mark_offline", mark_offline_path(@driver.id), method: :patch %>
   <% else %>
-    <%= link_to "mark_online", mark_offline_path(@driver), method: :patch %>
+    <%= link_to "mark_online", mark_online_path(@driver.id), method: :patch %>
   <% end %>
 </p>
 
