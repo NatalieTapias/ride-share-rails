@@ -51,15 +51,46 @@ describe PassengersController do
     end
     
     describe "edit" do
-      # Your tests go here
+      it "can show the edit page for passenger" do
+        get edit_passenger_path(passenger)
+        must_respond_with :success
+      end
+      
+      it "redirects when given invalid passenger id" do
+        
+        get edit_passenger_path(-1)
+        must_respond_with :success
+      end
     end
+    
+    
     
     describe "update" do
       # Your tests go here
     end
     
     describe "destroy" do
-      # Your tests go here
+      it "destroys the passenger instance in db when passenger exists, then redirects" do
+        # Arrange
+        count = Passenger.count
+        new_passenger = Passenger.create name: "Spammy Spam", phone_num: "333-333-3333"
+        
+        expect(Passenger.count).must_equal (count + 1)
+        
+        expect{
+          delete passenger_path(new_passenger.id)
+        }.must_change "Passenger.count", 1
+        must_respond_with :redirect
+        must_redirect_to passengers_path
+      end
+      
+      it "does not change the db when the passenger does not exist " do
+        before_count = Passenger.count
+        delete passenger_path(-1)
+        after_count = Passenger.count
+        
+        expect(before_count).must_equal after_count
+      end
     end
   end
 end
