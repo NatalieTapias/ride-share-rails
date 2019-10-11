@@ -11,7 +11,7 @@
   
   <li><%= link_to "Add New Passenger", new_passenger_path(@passenger) %></li>
 
-  <li><%= link_to "Add a Trip", new_passenger_trip_path %></li>
+  <li><%= link_to "Add a Trip", new_passenger_trip_path(@passenger) %></li>
 </ul>
 <%# request method lives in passenger show page, and call for the Driver.available_driver method and the create action for trip. %>
 <section>

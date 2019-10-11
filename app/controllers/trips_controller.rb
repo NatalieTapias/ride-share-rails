@@ -10,7 +10,7 @@ class TripsController < ApplicationController
   
   def new
     if params[:id]
-      passenger = Passenger.find_by(id: passenger.id)
+      passenger = Passenger.find_by(passenger_id: passenger.id)
       @trip = passenger.trips.new
     else
       @trip = Trip.new

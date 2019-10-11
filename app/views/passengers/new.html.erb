@@ -2,13 +2,3 @@
 
 <%= render partial: "form", locals: { action_name: "New Passenger", verb: "Create" } %>
 
-<% if @passenger.errors.any? %>
-  <h1>Errors</h1>
-  <ul class="errors">
-    <% @passenger.errors.each do |column, message| %>
-      <li>
-        <strong><%= column.capitalize %></strong> <%= message %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
