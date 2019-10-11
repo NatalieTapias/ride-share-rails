@@ -95,29 +95,24 @@ describe DriversController do
     }
     
     it "can update an existing driver with valid information accurately, and redirect" do
-      existing_driver = Driver.first
-      updated_driver_form_data = {
+      driver_hash = {
         driver: {
           name: "Spammy Spam",
           vin: "000000"
         }
       }
       
-      expect {
-        patch driver_path(existing_driver.id), params: updated_driver_form_data
-      }.wont_change 'Driver.count'
+      patch driver_path(driver.id), params: driver_hash
       
-      expect (
-        Driver.find_by(id: existing_driver.id).name
-      ).must_equal "Spammy Spam"
-      
-      expect (
-        Driver.find_by(id: existing_driver.id).vin
-      ).must_equal "000000"
+      updated_driver = Driver.find_by(id: driver.id)
+      expect(updated_driver.name).must_equal driver_hash[:driver][:name]
+      expect(updated_driver.vin).must_equal driver_hash[:driver][:vin]
       
       must_respond_with :redirect
+      must_redirect_to drivers_path(driver)
+      
     end
-
+    
     it "does not update any driver if given an invalid id, and responds with a 404" do
       updated_driver_form_data = {
         driver: {
@@ -125,38 +120,38 @@ describe DriversController do
           vin: "000000"
         }
       }
-
+      
       expect {
         patch driver_path(-1), params: updated_driver_form_data
       }.wont_change 'Driver.count'
-
+      
       must_respond_with :missing
     end
   end
-
+  
   # describe "destroy" do
   #   it "destroys the driver instance in db when driver exists, then redirects" do
   #     # Arrange
   #     # Ensure there is an existing driver saved
-
+  
   #     # Act-Assert
   #     # Ensure that there is a change of -1 in Driver.count
-
+  
   #     # Assert
   #     # Check that the controller redirects
-
+  
   #   end
-
+  
   #   it "does not change the db when the driver does not exist, then responds with " do
   #     # Arrange
   #     # Ensure there is an invalid id that points to no driver
-
+  
   #     # Act-Assert
   #     # Ensure that there is no change in Driver.count
-
+  
   #     # Assert
   #     # Check that the controller responds or redirects with whatever your group decides
-
+  
   #   end
   # end
 end
