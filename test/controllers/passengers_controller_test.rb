@@ -1,5 +1,6 @@
 require "test_helper"
 
+
 describe PassengersController do
   let (:passenger) {
     Passenger.create name: "Dolly", phone_num: "360-931-1677"
@@ -59,7 +60,7 @@ describe PassengersController do
       it "redirects when given invalid passenger id" do
         
         get edit_passenger_path(-1)
-        must_respond_with :success
+        must_redirect_to passengers_path
       end
     end
     
