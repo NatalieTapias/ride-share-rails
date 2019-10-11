@@ -4,30 +4,22 @@
   <li>ID: <%= @passenger.id %> </li>
   <li>Name: <%= @passenger.name %> </li>
   <li>Phone Number: <%= @passenger.phone_num %> </li>
-  <li>Total Costs: <%= @passenger.total_cost %></li>
-
-  <li><%= link_to "Edit Passenger Info", edit_passenger_path(@passenger) %></li>
-  <%= link_to "Delete passenger", passenger_path(@passenger), method: :delete, data: { confirm: "Are you sure you want to delete #{@passenger.name}?"} %>
-  
-  <li><%= link_to "Add New Passenger", new_passenger_path(@passenger) %></li>
-
-  <li><%= link_to "Add a Trip", new_passenger_trip_path(@passenger) %></li>
+  <%= link_to "Edit", edit_passenger_path(@passenger) %> | 
+  <%= link_to "Delete", passenger_path(@passenger), method: :delete, data: { confirm: "Are you sure you want to delete #{@passenger.name}?"} %>
 </ul>
-<%# request method lives in passenger show page, and call for the Driver.available_driver method and the create action for trip. %>
+
+<p> Total_Cost: $<%= @passenger.total_cost %> </p>
+<button name="add_trip" type="submit" action= <% @passenger.add_trip %>> Add_Trip </button>
+
 <section>
-Trips:
-<hr/>
-<%  trip_array = Trip.where(passenger_id: @passenger.id).to_a %>
-<% trip_array.each do |trip| %>
-<ul>
-
- 
-<li>Trip ID: <%= link_to trip.id, trip_path(trip) %> </li>
-<li>Trip Cost: $<%= (trip.cost.to_f) / 100 %></li>
-<li>Rating: <%= trip.rating %></li>
-<li>Driver Name: <%= trip.driver.name %></li>
-</ul>
-<% end %>
-
-
+  Trips: 
+  <% @passenger.trips.each do |trip| %>
+    <li> ID: <%= link_to "#{trip.id}", trip_path(trip) %> </li>
+    <li> Date: <%= trip.date %> </li>
+    <li> Driver: <%= trip.driver.name %> - ID: <%= trip.driver.id %> </li>
+    <li> Cost: <%= trip.cost %> </li>
+    <li> Rating: <%= trip.rating %> </li>
+  <% end %>
 </section>
+
+<%= link_to "Back to drivers list", drivers_path %>
