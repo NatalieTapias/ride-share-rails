@@ -1,7 +1,8 @@
 require "test_helper"
 
 describe DriversController do
-  describe "index" do
+  
+  describe "index action" do
     let (:driver) {
       Driver.create name: "George", vin: "123456789"
     }
@@ -24,7 +25,7 @@ describe DriversController do
   end
   
   
-  describe "show" do
+  describe "show action" do
     let (:driver) {
       Driver.create name: "Wallis", vin: "987654321"
     }
@@ -44,129 +45,133 @@ describe DriversController do
   end
   
   
-  describe "new" do
-    it "responds with success" do
-    end
-  end
-  
-  describe "create" do
-    it "can create a new driver with valid information accurately, and redirect" do
-      # Arrange
-      # Set up the form data
-      
-      # Act-Assert
-      # Ensure that there is a change of 1 in Driver.count
-      
-      # Assert
-      # Find the newly created Driver, and check that all its attributes match what was given in the form data
-      # Check that the controller redirected the user
-      
-    end
+  describe "new action" do
     
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Set up the form data so that it violates Driver validations
+    it "responds with success" do
+      get new_driver_path
       
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
-      
-      # Assert
-      # Check that the controller redirects
-      
+      must_respond_with :success
     end
   end
   
-  describe "edit" do
+  describe "create action" do
+    it "can create a new driver with valid information accurately, and redirect" do
+      driver_hash = {
+        driver: {
+          name: "SpongeBob", 
+          vin: "1234567890"
+        }
+      }
+      
+      expect {
+        post drivers_path, params: driver_hash
+      }.must_differ 'Driver.count', 1
+      
+      must_redirect_to driver_path(Driver.find_by(name: "SpongeBob"))
+    end
+  end
+  
+  describe "edit action" do
+    let (:driver) {
+      Driver.create name: "Patrick Star", vin: "9876543210"
+    }
+    
     it "responds with success when getting the edit page for an existing, valid driver" do
-      # Arrange
-      # Ensure there is an existing driver saved
+      get edit_driver_path(driver)
       
-      # Act
-      
-      # Assert
-      
+      must_respond_with :success
     end
     
     it "responds with redirect when getting the edit page for a non-existing driver" do
-      # Arrange
-      # Ensure there is an invalid id that points to no driver
+      get edit_driver_path(-1)
       
-      # Act
-      
-      # Assert
-      
+      must_respond_with :redirect
     end
   end
   
   describe "update" do
+    let (:driver) {
+      Driver.create name: "Sammy Sam", vin: "235320"
+    }
+    
     it "can update an existing driver with valid information accurately, and redirect" do
-      # Arrange
-      # Ensure there is an existing driver saved
-      # Assign the existing driver's id to a local variable
-      # Set up the form data
+      existing_driver = Driver.first
+      updated_driver_form_data = {
+        driver: {
+          name: "Spammy Spam",
+          vin: "000000"
+        }
+      }
       
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+      expect {
+        patch driver_path(existing_driver.id), params: updated_driver_form_data
+      }.wont_change 'Driver.count'
       
-      # Assert
-      # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
-      # Check that the controller redirected the user
+      expect (
+        Driver.find_by(id: existing_driver.id).name
+      ).must_equal "Spammy Spam"
       
+      expect (
+        Driver.find_by(id: existing_driver.id).vin
+      ).must_equal "000000"
+      
+      must_respond_with :redirect
     end
     
-    it "does not update any driver if given an invalid id, and responds with a 404" do
-      # Arrange
-      # Ensure there is an invalid id that points to no driver
-      # Set up the form data
-      
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
-      
-      # Assert
-      # Check that the controller gave back a 404
-      
-    end
+    #   it "does not update any driver if given an invalid id, and responds with a 404" do
+    #     # Arrange
+    #     # Ensure there is an invalid id that points to no driver
+    #     # Set up the form data
     
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Ensure there is an existing driver saved
-      # Assign the existing driver's id to a local variable
-      # Set up the form data so that it violates Driver validations
-      
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
-      
-      # Assert
-      # Check that the controller redirects
-      
-    end
+    #     # Act-Assert
+    #     # Ensure that there is no change in Driver.count
+    
+    #     # Assert
+    #     # Check that the controller gave back a 404
+    
+    #   end
+    
+    #   it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+    #     # Note: This will not pass until ActiveRecord Validations lesson
+    #     # Arrange
+    #     # Ensure there is an existing driver saved
+    #     # Assign the existing driver's id to a local variable
+    #     # Set up the form data so that it violates Driver validations
+    
+    #     # Act-Assert
+    #     # Ensure that there is no change in Driver.count
+    
+    #     # Assert
+    #     # Check that the controller redirects
+    
+    #   end
+    # end
+    
+    # describe "destroy" do
+    #   it "destroys the driver instance in db when driver exists, then redirects" do
+    #     # Arrange
+    #     # Ensure there is an existing driver saved
+    
+    #     # Act-Assert
+    #     # Ensure that there is a change of -1 in Driver.count
+    
+    #     # Assert
+    #     # Check that the controller redirects
+    
+    #   end
+    
+    #   it "does not change the db when the driver does not exist, then responds with " do
+    #     # Arrange
+    #     # Ensure there is an invalid id that points to no driver
+    
+    #     # Act-Assert
+    #     # Ensure that there is no change in Driver.count
+    
+    #     # Assert
+    #     # Check that the controller responds or redirects with whatever your group decides
+    
+    #   end
+    # end
+    
   end
   
-  describe "destroy" do
-    it "destroys the driver instance in db when driver exists, then redirects" do
-      # Arrange
-      # Ensure there is an existing driver saved
-      
-      # Act-Assert
-      # Ensure that there is a change of -1 in Driver.count
-      
-      # Assert
-      # Check that the controller redirects
-      
-    end
-    
-    it "does not change the db when the driver does not exist, then responds with " do
-      # Arrange
-      # Ensure there is an invalid id that points to no driver
-      
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
-      
-      # Assert
-      # Check that the controller responds or redirects with whatever your group decides
-      
-    end
-  end
-end
