@@ -3,7 +3,7 @@
 <ul>
   <% @trips.each do |trip| %>
     <li>
-    <%= trip.id %>.  
+    ID: <%= link_to "#{trip.id}", trip_path(trip) %> |
     Date: <%= trip.date %> | 
     Rating: <%= trip.rating %> | 
     Cost: <%= trip.cost %> | 
