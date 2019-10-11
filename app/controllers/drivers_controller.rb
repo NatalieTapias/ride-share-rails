@@ -59,9 +59,23 @@ class DriversController < ApplicationController
     end 
     
     @driver.destroy
-    redirect_to drivers_path
+    redirect_to driver_path(@driver)
     return
   end
+
+  def set_status
+    @driver = Driver.find_by(id: params[:id])
+    
+    if @driver.nil?
+      flash[:error] = "Could not find driver ID #{ @driver.id }"
+      redirect_to drivers_path
+      return
+    end
+
+    @driver.change_status
+    redirect_to driver_path(driver)
+    return 
+  end 
   
   private
   

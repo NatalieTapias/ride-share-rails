@@ -24,7 +24,6 @@ class Driver < ApplicationRecord
       end
     end
     
-    
     if count == 0
       return "There is no rating info avaliable"
     else
@@ -32,10 +31,24 @@ class Driver < ApplicationRecord
     end
   end
   
-  def self.available_driver
-    driver = nil 
+  def self.available_driver 
     driver = Driver.find_by(active: false)
     
-    return driver
+    if driver
+      driver.become_active
+      return driver
+    else
+      return nil 
+    end
+  end
+
+  def become_active
+    self.active = false
+
+    if self.save
+      return self
+    else
+      return false
+    end
   end
 end
