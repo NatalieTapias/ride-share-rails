@@ -114,45 +114,57 @@ describe DriversController do
     end
     
     it "does not update any driver if given an invalid id, and responds with a 404" do
-      updated_driver_form_data = {
-        driver: {
-          name: "Spammy Spam",
-          vin: "000000"
-        }
-      }
+      # update drivers controller wtih something like this
+      # if driver.nil?
+      #   flash[:error] = "Could not driver task with drier_id: #{driver.id}"
+      #   redirect_to drivers_path
+      #   return
       
-      expect {
-        patch driver_path(-1), params: updated_driver_form_data
-      }.wont_change 'Driver.count'
+      # updated_driver_form_data = {
+      #   driver: {
+      #     name: "Spammy Spam",
+      #     vin: "007700"
+      #   }
+      # }
       
-      must_respond_with :missing
+      # patch driver_path(-1), params: updated_driver_form_data
+      
+      # must_respond_with :redirect
+      # must_redirect_to drivers_path
+      
     end
   end
   
-  # describe "destroy" do
-  #   it "destroys the driver instance in db when driver exists, then redirects" do
-  #     # Arrange
-  #     # Ensure there is an existing driver saved
-  
-  #     # Act-Assert
-  #     # Ensure that there is a change of -1 in Driver.count
-  
-  #     # Assert
-  #     # Check that the controller redirects
-  
-  #   end
-  
-  #   it "does not change the db when the driver does not exist, then responds with " do
-  #     # Arrange
-  #     # Ensure there is an invalid id that points to no driver
-  
-  #     # Act-Assert
-  #     # Ensure that there is no change in Driver.count
-  
-  #     # Assert
-  #     # Check that the controller responds or redirects with whatever your group decides
-  
-  #   end
-  # end
+  describe "destroy" do
+    it "destroys the driver instance in db when driver exists, then redirects" do
+      # Arrange
+      count = Driver.count
+      new_driver = Driver.create name: "Spammy Spam", vin: "007700"
+      
+      # Ensure there is an existing driver saved
+      expect(Driver.count).must_equal (count + 1)
+      
+      expect{
+        delete driver_path(new_driver.id)
+      }.must_change "Driver.count", 1
+      must_respond_with :redirect
+      must_redirect_to driver_path(new_driver)
+      
+      
+    end
+    
+    #   it "does not change the db when the driver does not exist, then responds with " do
+    #     # Arrange
+    #     # Ensure there is an invalid id that points to no driver
+    
+    #     # Act-Assert
+    #     # Ensure that there is no change in Driver.count
+    
+    #     # Assert
+    #     # Check that the controller responds or redirects with whatever your group decides
+    
+    #   end
+    # end
+  end
 end
 
