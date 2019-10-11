@@ -9,7 +9,7 @@
 </ul>
 
 <p> Total_Cost: $<%= @passenger.total_cost %> </p>
-<button name="add_trip" type="submit" action= <% @passenger.add_trip %>> Add_Trip </button>
+<p> <%= link_to "Add Trip", passenger_trips_path(@passenger.id), method: :post %>  </p>
 
 <section>
   Trips: 

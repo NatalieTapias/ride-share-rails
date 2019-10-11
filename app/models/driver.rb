@@ -31,24 +31,4 @@ class Driver < ApplicationRecord
     end
   end
   
-  def self.available_driver 
-    driver = Driver.find_by(active: false)
-    
-    if driver
-      driver.become_active
-      return driver
-    else
-      return nil 
-    end
-  end
-
-  def become_active
-    self.active = false
-
-    if self.save
-      return self
-    else
-      return false
-    end
-  end
 end
