@@ -6,7 +6,7 @@ class DriversController < ApplicationController
   def show
     driver_id = params[:id]
     @driver = Driver.find_by(id: driver_id)
-
+    
     if @driver.nil?
       head :not_found
       return
@@ -53,7 +53,7 @@ class DriversController < ApplicationController
     @driver = Driver.find_by(id: params[:id])
     
     if @driver.nil?
-      flash[:error] = "Could not find driver ID #{ @driver.id }"
+      flash[:error] = "Could not find driver ID #{ params[:id] }"
       redirect_to drivers_path
       return
     end 
@@ -62,7 +62,7 @@ class DriversController < ApplicationController
     redirect_to driver_path(@driver)
     return
   end
-
+  
   def set_status
     @driver = Driver.find_by(id: params[:id])
     
@@ -71,7 +71,7 @@ class DriversController < ApplicationController
       redirect_to drivers_path
       return
     end
-
+    
     @driver.change_status
     redirect_to driver_path(driver)
     return 

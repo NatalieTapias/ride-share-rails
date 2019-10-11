@@ -33,7 +33,7 @@ class PassengersController < ApplicationController
     @passenger = Passenger.find_by(id: params[:id])
     
     if @passenger.nil?
-      flash[:error] = "Could not find passenger ID #{ @passenger.id }"
+      flash[:error] = "Could not find passenger ID #{ params[:id] }"
       redirect_to passengers_path
       return
     end 
@@ -55,7 +55,7 @@ class PassengersController < ApplicationController
     @passenger = Passenger.find_by(id: params[:id])
     
     if @passenger.nil?
-      flash[:error] = "Could not find passenger ID #{ @passenger.id }"
+      flash[:error] = "Could not find passenger ID #{ params[:id]}"
       redirect_to passengers_path
       return
     end 
