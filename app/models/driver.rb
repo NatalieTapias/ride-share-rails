@@ -31,4 +31,15 @@ class Driver < ApplicationRecord
       return (sum / count)
     end
   end
+
+  def self.available_driver
+    driver = nil 
+    driver = Driver.find_by(active: false)
+
+    if driver = nil 
+      return "There is no available driver at the moment"
+    else 
+      return driver
+    end
+  end
 end
