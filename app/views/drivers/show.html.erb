@@ -16,8 +16,20 @@
   <%= @driver.average_rating%>
 </p>
 
+<p> Driver_Status (active in trip?): 
+  <%= @driver.active%>
+</p>
+
+<p> 
+  <% if @driver.active == false %>
+    <%= link_to "mark_offline", mark_online_path(@driver), method: :patch %>
+  <% else %>
+    <%= link_to "mark_online", mark_offline_path(@driver), method: :patch %>
+  <% end %>
+</p>
+
 <section>
-  Trips: 
+  Trips:
   <% @driver.trips.each do |trip| %>
     <li> ID: <%= link_to "#{trip.id}", trip_path(trip) %> </li>
     <li> Date: <%= trip.date %> </li>

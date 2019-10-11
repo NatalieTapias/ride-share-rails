@@ -62,8 +62,8 @@ class DriversController < ApplicationController
     redirect_to driver_path(@driver)
     return
   end
-  
-  def set_status
+
+  def mark_online
     @driver = Driver.find_by(id: params[:id])
     
     if @driver.nil?
@@ -71,9 +71,24 @@ class DriversController < ApplicationController
       redirect_to drivers_path
       return
     end
+
+    @driver.active = false
+    redirect_to driver_path(@driver)
+    return 
+  end 
+
+
+  def mark_offline
+    @driver = Driver.find_by(id: params[:id])
     
-    @driver.change_status
-    redirect_to driver_path(driver)
+    if @driver.nil?
+      flash[:error] = "Could not find driver ID #{ @driver.id }"
+      redirect_to drivers_path
+      return
+    end
+
+    @driver.active = true
+    redirect_to driver_path(@driver)
     return 
   end 
   
