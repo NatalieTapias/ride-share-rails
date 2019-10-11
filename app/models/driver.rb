@@ -30,5 +30,5 @@ class Driver < ApplicationRecord
       return (sum / count)
     end
   end
-  
+
 end

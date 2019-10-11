@@ -16,8 +16,12 @@
   <%= @driver.average_rating%>
 </p>
 
+<p> Change_Status: 
+  <%= @driver.average_rating%>
+</p>
+
 <section>
-  Trips: 
+  Trips:
   <% @driver.trips.each do |trip| %>
     <li> ID: <%= link_to "#{trip.id}", trip_path(trip) %> </li>
     <li> Date: <%= trip.date %> </li>
