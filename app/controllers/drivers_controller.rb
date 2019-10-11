@@ -32,7 +32,6 @@ class DriversController < ApplicationController
     @driver = Driver.find_by(id: params[:id])
     
     if @driver.nil?
-      flash[:error] = "Could not find driver ID #{ @driver.id }"
       redirect_to drivers_path
       return
     end 
