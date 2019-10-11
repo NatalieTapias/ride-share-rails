@@ -4,7 +4,7 @@
   <li>ID: <%= @passenger.id %> </li>
   <li>Name: <%= @passenger.name %> </li>
   <li>Phone Number: <%= @passenger.phone_num %> </li>
-  <li>Total Costs: (PUT SUM HERE) </li>
+  <li>Total Costs: <%= @passenger.total_cost %></li>
 
   <li><%= link_to "Edit Passenger Info", edit_passenger_path(@passenger) %></li>
   <%= link_to "Delete passenger", passenger_path(@passenger), method: :delete, data: { confirm: "Are you sure you want to delete #{@passenger.name}?"} %>

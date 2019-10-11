@@ -1,9 +1,9 @@
 class Driver < ApplicationRecord
   has_many :trips, dependent: :nullify
-
+  
   validates :name, presence: true
   validates :vin, presence: true
-
+  
   def total_earning
     sum = 0
     self.trips.each do |trip|
@@ -13,7 +13,7 @@ class Driver < ApplicationRecord
     end
     return sum
   end
-
+  
   def average_rating
     sum = 0
     count = 0
@@ -31,11 +31,11 @@ class Driver < ApplicationRecord
       return (sum / count)
     end
   end
-
+  
   def self.available_driver
     driver = nil 
     driver = Driver.find_by(active: false)
-
+    
     if driver = nil 
       return "There is no available driver at the moment"
     else 
