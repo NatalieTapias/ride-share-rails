@@ -9,9 +9,7 @@ describe DriversController do
     
     it "responds with success when there are many drivers in the database" do
       driver
-      
       get drivers_path
-      
       must_respond_with :success
     end
     
@@ -156,13 +154,9 @@ describe DriversController do
       before_count = Driver.count
       
       delete driver_path(-1)
-      
       after_count = Driver.count
       
       expect(before_count).must_equal after_count
-      
-      # Check that the controller responds or redirects with whatever your group decides
-      
     end
   end
 end

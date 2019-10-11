@@ -6,6 +6,12 @@ class PassengersController < ApplicationController
   def show
     passenger_id = params[:id]
     @passenger = Passenger.find_by(id: passenger_id)
+    
+    if @passenger.nil?
+      flash[:error] = "Could not find passenger ID #{ @passenger.id }"
+      render passengers_path
+      return
+    end
   end
   
   def new
