@@ -36,10 +36,6 @@ class Driver < ApplicationRecord
     driver = nil 
     driver = Driver.find_by(active: false)
     
-    if driver = nil 
-      return "There is no available driver at the moment"
-    else 
-      return driver
-    end
+    return driver
   end
 end
