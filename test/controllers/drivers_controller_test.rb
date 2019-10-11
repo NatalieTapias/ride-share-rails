@@ -146,16 +146,14 @@ describe DriversController do
         delete driver_path(new_driver.id)
       }.must_change "Driver.count", 1
       must_respond_with :redirect
-      must_redirect_to driver_path(new_driver)
+      must_redirect_to drivers_path
     end
     
     it "does not change the db when the driver does not exist " do
       
       before_count = Driver.count
-      
       delete driver_path(-1)
       after_count = Driver.count
-      
       expect(before_count).must_equal after_count
     end
   end
