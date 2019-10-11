@@ -151,14 +151,16 @@ describe DriversController do
       must_redirect_to driver_path(new_driver)
     end
     
-    it "does not change the db when the driver does not exist, then responds with " do
-      # Arrange
-      # Ensure there is an invalid id that points to no driver
+    it "does not change the db when the driver does not exist " do
       
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+      before_count = Driver.count
       
-      # Assert
+      delete driver_path(-1)
+      
+      after_count = Driver.count
+      
+      expect(before_count).must_equal after_count
+      
       # Check that the controller responds or redirects with whatever your group decides
       
     end
