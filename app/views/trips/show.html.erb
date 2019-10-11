@@ -6,6 +6,12 @@
   <li> Cost: <%= @trip.cost %> </li>
   <li> Passenger: <%= link_to "#{@trip.passenger.name}", passenger_path(@trip.passenger) %> - ID: <%= @trip.passenger.id %></li>
   <li> Driver: <%= link_to "#{@trip.driver.name}", driver_path(@trip.driver) %>- ID: <%= @trip.driver.id %> </li>
+
+<%= form_for @trip  do |form| %>
+  <%= form.select :rating, [[1], [2], [3], [4], [5]] %> 
+  <%= form.submit "Update Rating"%>
+<% end %>
+ 
 </ul>
 
 <%= link_to "Back to drivers list", trips_path %>
