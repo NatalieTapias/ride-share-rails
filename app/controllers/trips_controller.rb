@@ -6,6 +6,12 @@ class TripsController < ApplicationController
   def show
     trip_id = params[:id]
     @trip = Trip.find_by(id: trip_id)
+    
+    if @trip.nil?
+      flash[:error] = "Could not find trip ID #{ params[:id] }"
+      redirect_to trips_path
+      return
+    end 
   end
   
   def new
@@ -26,7 +32,7 @@ class TripsController < ApplicationController
         date: trip_parameter[:date],
         cost: trip_parameter[:cost]
       )
-
+      
       if @trip.save
         redirect_to passenger_path(params[:passenger_id])
         return

@@ -82,7 +82,6 @@ describe DriversController do
     
     it "responds with redirect when getting the edit page for a non-existing driver" do
       get edit_driver_path(-1)
-      
       must_respond_with :redirect
     end
   end
@@ -112,23 +111,9 @@ describe DriversController do
     end
     
     it "does not update any driver if given an invalid id, and responds with a 404" do
-      # update drivers controller wtih something like this
-      # if driver.nil?
-      #   flash[:error] = "Could not driver task with drier_id: #{driver.id}"
-      #   redirect_to drivers_path
-      #   return
       
-      # updated_driver_form_data = {
-      #   driver: {
-      #     name: "Spammy Spam",
-      #     vin: "007700"
-      #   }
-      # }
-      
-      # patch driver_path(-1), params: updated_driver_form_data
-      
-      # must_respond_with :redirect
-      # must_redirect_to drivers_path
+      patch driver_path(-1)
+      must_respond_with :redirect
       
     end
   end
