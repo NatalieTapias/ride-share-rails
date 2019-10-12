@@ -1,11 +1,11 @@
-<h1> Drivers List </h1>
+<h1> Rideshare Drivers </h1>
 
 <ul>
   <% @drivers.each do |driver| %>
     <li>
     <%= driver.id %>.  
     <%= link_to "#{driver.name}", driver_path(driver) %> | 
-    <%= driver.vin %> |
+    Average Rating: <%= driver.average_rating %> |
     <%= link_to "Edit", edit_driver_path(driver) %>
     <%= link_to "Delete", driver_path(driver), method: :delete, data: { confirm: "Are you sure you want to delete #{driver.name}?"} %>
     </li>

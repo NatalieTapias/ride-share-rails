@@ -4,17 +4,9 @@
   <li> ID: <%= @driver.id %> </li>
   <li> Name: <%= @driver.name %> </li>
   <li> vin: <%= @driver.vin %> </li>
-  <%= link_to "Edit", edit_driver_path(@driver) %>
-  <%= link_to "Delete", driver_path(@driver), method: :delete, data: { confirm: "Are you sure you want to delete #{@driver.name}?"} %>
+  <li> Total_Earning: $<%= @driver.total_earning %> </li>
+  <li> Average_Rating: <%= @driver.average_rating %> </li>
 </ul>
-
-<p> Total_Earning: 
-  $<%= @driver.total_earning %>
-</p>
-
-<p> Average_Rating: 
-  <%= @driver.average_rating%>
-</p>
 
 <p> Driver_Status (active in trip?): 
   <%= @driver.active%>

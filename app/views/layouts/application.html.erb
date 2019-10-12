@@ -10,6 +10,16 @@
   </head>
 
   <body>
+    <section class='header'>
+      Affordable Community RideShare | 
+      <%= link_to "Add New Driver", new_driver_path(@driver) %> | 
+      <%= link_to "Add New Passenger", new_passenger_path(@driver) %>
+    </section>
+
     <%= yield %>
+
+    <section class='footer'>
+      <p> All Rights Reserved: Natalie & Yitgop @2019 </p>
+    </section>
   </body>
 </html>
