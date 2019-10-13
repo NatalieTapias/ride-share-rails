@@ -1,6 +1,12 @@
 <h3> Trip Details </h3>
 
-<table id="trips">
+
+<%= link_to "Edit", edit_trip_path(@trip) %> | </li>
+<%= link_to "Delete", trip_path(@trip), method: :delete, data: { confirm: "Are you sure you want to delete Trip # #{@trip.id}?"} %> </li>
+
+
+
+<table class=lists>
   <tr>
     <th> ID </th>
     <th> Date </th>
@@ -22,12 +28,13 @@
 </table>
 
 <br>
-
 <%= form_for @trip  do |form| %>
   <%= form.select :rating, [[1], [2], [3], [4], [5]] %> 
   <%= form.submit "Update Rating"%>
 <% end %>
 
 <br>
-
+<br>
+<%= link_to "Back to the Passenger's Page", passenger_path(@trip.passenger.id) %>
+<br>
 <%= link_to "Back to Homepage", root_path %>

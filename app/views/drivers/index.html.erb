@@ -1,6 +1,6 @@
 <h3> All Drivers </h3>
 
-<table id="driver_trips">
+<table class=lists>
   <tr>
     <th> ID </th>
     <th> Name </th>
@@ -15,7 +15,7 @@
       <td> <%= link_to "#{driver.id}", driver_path(driver) %> </td>
       <td> <%= driver.name %> </td>
       <td> <%= driver.average_rating %> </td>
-      <td> <%= driver.total_earning %> </td>
+      <td> $<%= driver.total_earning %> </td>
       <td> <%= link_to "Edit", edit_driver_path(driver) %> </td>
       <td> <%= link_to "Delete", driver_path(driver), method: :delete, data: { confirm: "Are you sure you want to delete #{driver.name}?"} %> </td>
     </tr>

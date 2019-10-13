@@ -1,13 +1,24 @@
-<h1> Passenger Index </h1>
-<p>  <%= link_to "New Passenger", new_passenger_path %></p>
-<ul>
+<h3> All Passengers </h3>
+
+<table class=lists>
+  <tr>
+    <th> ID </th>
+    <th> Name </th>
+    <th> Phone_Number </th>
+    <th> Edit </th>
+    <th> Delete </th>
+  </tr>
+
   <% @passengers.each do |passenger| %>
-    <li>
-    <%= passenger.id %>.  
-    <%= link_to passenger.name, passenger_path(passenger) %> | 
-    <%= passenger.phone_num %>
-    <%= link_to "Edit", edit_passenger_path(passenger) %>
-    <%= link_to "Delete", passenger_path(passenger), method: :delete, data: { confirm: "Are you sure you want to delete #{passenger.name}?"} %>
-    </li>
+    <tr>
+      <td> <%= link_to "#{passenger.id}", passenger_path(passenger) %> </td>
+      <td> <%= passenger.name %> </td>
+      <td> <%= passenger.phone_num %> </td>
+      <td> <%= link_to "Edit", edit_passenger_path(passenger) %> </td>
+      <td> <%= link_to "Delete", passenger_path(passenger), method: :delete, data: { confirm: "Are you sure you want to delete #{passenger.name}?"} %> </td>
+    </tr>
   <% end %>
-</ul>
+</table>
+
+<br>
+<%= link_to "Back to Homepage", root_path %>

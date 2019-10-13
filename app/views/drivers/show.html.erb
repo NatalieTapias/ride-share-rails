@@ -6,7 +6,9 @@
   <li> VIN: <%= @driver.vin %> </li>
   <li> Total_Earning: $<%= @driver.total_earning %> </li>
   <li> Average_Rating: <%= @driver.average_rating %> </li>
-  <li> Active_in_Trip: <%= @driver.active%> </li>
+  <li> Active_in_Trip: <%= @driver.active %> </li>
+  <%= link_to "Edit", edit_driver_path(@driver) %> | 
+  <%= link_to "Delete", driver_path(@driver), method: :delete, data: { confirm: "Are you sure you want to delete #{@driver.name}?"} %>
 </ul>
 
 <p> 
@@ -19,7 +21,7 @@
 
 <br>
 
-<table id="driver_trips">
+<table class=lists>
   <tr>
     <th> ID </th>
     <th> Date </th>
