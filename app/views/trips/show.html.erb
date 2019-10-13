@@ -1,17 +1,33 @@
-<h2> Trip Information </h2>
+<h3> Trip Details </h3>
 
-<ul>
-  <li> Date: <%= @trip.date %> </li>
-  <li> Rating: <%= @trip.rating %> </li>
-  <li> Cost: <%= @trip.cost %> </li>
-  <li> Passenger: <%= link_to "#{@trip.passenger.name}", passenger_path(@trip.passenger) %> - ID: <%= @trip.passenger.id %></li>
-  <li> Driver: <%= link_to "#{@trip.driver.name}", driver_path(@trip.driver) %>- ID: <%= @trip.driver.id %> </li>
+<table id="trips">
+  <tr>
+    <th> ID </th>
+    <th> Date </th>
+    <th> Driver </th>
+    <th> Passenger </th>
+    <th> Rating </th>
+    <th> Cost </th>
+  </tr>
+
+  <tr>
+    <td> <%= @trip.id %> </td>
+    <td> <%= @trip.date %> </td>
+    <td> <%= @trip.driver.name %> </td>
+    <td> <%= @trip.passenger.name %> </td>
+    <td> <%= @trip.rating %> </td>
+    <td> $<%= @trip.cost %> </td>
+  </tr>
+
+</table>
+
+<br>
 
 <%= form_for @trip  do |form| %>
   <%= form.select :rating, [[1], [2], [3], [4], [5]] %> 
   <%= form.submit "Update Rating"%>
 <% end %>
- 
-</ul>
 
-<%= link_to "Back to trips list", trips_path %>
+<br>
+
+<%= link_to "Back to Homepage", root_path %>

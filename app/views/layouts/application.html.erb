@@ -7,19 +7,28 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
   </head>
 
   <body>
-    <section class='header'>
-      Affordable Community RideShare | 
-      <%= link_to "Add New Driver", new_driver_path(@driver) %> | 
-      <%= link_to "Add New Passenger", new_passenger_path(@driver) %>
-    </section>
+    <header>
+      <section>
+      <ul>
+        <li id=title> Affordable Community RideShare </li>
+        <ul id=function>
+          <li> <%= link_to "Add New Driver", new_driver_path(@driver) %> | </li>
+          <li> <%= link_to "Add New Passenger", new_passenger_path(@driver) %>  </li>
+        </ul>
+      </ul>
+      </section>
+    </header>
 
+    <main>
     <%= yield %>
+    </main>
 
-    <section class='footer'>
+    <footer>
       <p> All Rights Reserved: Natalie & Yitgop @2019 </p>
-    </section>
+    </footer>
   </body>
 </html>
