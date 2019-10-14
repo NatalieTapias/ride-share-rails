@@ -18,7 +18,7 @@ describe TripsController do
   
   describe "show" do
     it "should show a valid trip" do 
-      get trip_path(trip)
+      get trip_path(trip.id)
       must_respond_with :success
     end
     
@@ -28,7 +28,7 @@ describe TripsController do
     end
   end
   
-  #   describe "create" do
+  #   describe should show a valid trip"create" do
   #     # let (:driver) {
   #     #   Driver.create name: "George", vin: "123456789"
   #     # }

@@ -8,7 +8,7 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: trip_id)
     
     if @trip.nil?
-      flash[:error] = "Could not find trip ID #{ params[:id] }"
+      flash[:error] = "Could not find trip"
       redirect_to trips_path
       return
     end 
@@ -17,6 +17,11 @@ class TripsController < ApplicationController
   def new
     if params[:id]
       passenger = Passenger.find_by(passenger_id: passenger.id)
+      if @trip.nil?
+        flash[:error] = "Could not find trip"
+        redirect_to trips_path
+        return
+      end 
       @trip = passenger.trips.new
     else
       @trip = Trip.new
